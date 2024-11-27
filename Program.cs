@@ -8,27 +8,28 @@ namespace Challenge4_3
         //Make sure stack is clear at end
         static void Main(string[] args)
         {
-            string s = "{([])}";
-            string t = "}(}[])";
-            string z = "[}";
-            string w = "{{{{{";
+            string s = "{([])}"; // Should be true
+            string t = "}(}[])"; // Should be false
+            string z = "[}";     // Should be false
+            string w = "{{{{{";  // Should be false
 
-            var bracketPairs = new Dictionary<char, char>()
+            
+
+            Console.WriteLine(ValidBrackets(s));
+            Console.WriteLine(ValidBrackets(t));
+            Console.WriteLine(ValidBrackets(z));
+            Console.WriteLine(ValidBrackets(w));
+        }
+
+        static bool ValidBrackets(string s)
+        {
+            Stack<char> stack = new Stack<char>();
+            var dict = new Dictionary<char, char>()
             {
                 { ')', '(' },
                 { '}', '{' },
                 { ']', '[' }
             };
-
-            Console.WriteLine(ValidBrackets(s, bracketPairs));
-            Console.WriteLine(ValidBrackets(t, bracketPairs));
-            Console.WriteLine(ValidBrackets(z, bracketPairs));
-            Console.WriteLine(ValidBrackets(w, bracketPairs));
-        }
-
-        static bool ValidBrackets(string s, Dictionary<char, char> dict)
-        {
-            Stack<char> stack = new Stack<char>();
 
             // If the string is empty or Null return false
             if (string.IsNullOrEmpty(s)) return false;
