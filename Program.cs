@@ -37,10 +37,10 @@ namespace Challenge4_3
             foreach (char c in s)
             {
                 // If it's a closing bracket, check for match
-                if (dict.ContainsKey(c))
+                if (dict.TryGetValue(c, out char result))
                 {
                     // Check if the stack is empty or the top doesn't match
-                    if (stack.Count == 0 || stack.Pop() != dict[c])
+                    if (stack.Count == 0 || stack.Pop() != result)
                     {
                         return false;
                     }
